@@ -1,0 +1,10 @@
+/* Elementor panel icon for the Mango Masonry Gallery widget. */
+.mmg-widget-icon::before {
+	content: "";
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	background-color: currentColor;
+	-webkit-mask: url("../images/widget-icon.svg") no-repeat center / contain;
+	mask: url("../images/widget-icon.svg") no-repeat center / contain;
+}
