@@ -1,0 +1,28 @@
+name: Update WordPress.org assets and readme
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "readme.txt"
+      - ".wordpress-org/**"
+
+jobs:
+  assets:
+    name: Push assets and readme to WordPress.org SVN
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Subversion
+        run: sudo apt-get update && sudo apt-get install -y subversion
+
+      - name: WordPress.org plugin asset/readme update
+        uses: 10up/action-wordpress-plugin-asset-update@stable
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: mango-masonry-gallery
+          IGNORE_OTHER_FILES: true
